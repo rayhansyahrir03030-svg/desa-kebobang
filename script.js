@@ -242,7 +242,7 @@ const pVegetasi = fetch("Data/Vegetasi.geojson")
   .catch((err) => console.error("Gagal load Data_vegetasi.geojson:", err));
 
 /* 7.3 Lahan Kosong (MultiPolygon, 3 fitur) */
-const pLahanKosong = fetch("Data/LahanKosong.geojson")
+const pLahanKosong = fetch("Data/Lahan Kosong.geojson")
   .then((res) => res.json())
   .then((data) => {
     L.geoJSON(data, {
