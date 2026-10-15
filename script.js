@@ -122,7 +122,6 @@ const warnaKategori = {
   Penyimpanan: "#a855f7",
   Pendidikan: "#3b82f6",
   Ibadah: "#10b981",
-  Kesehatan: "#ef4444",
   Perkantoran: "#1e3a8a",
 };
 
