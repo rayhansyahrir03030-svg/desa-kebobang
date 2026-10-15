@@ -107,37 +107,23 @@ fetch("Data/LULCbarubgtbgt.tif")
 
 /* 6.1 Bangunan: warna berdasarkan kategori (dari atribut Nama_Obj) */
 const kategoriBangunan = {
-  Pemukiman: "Hunian",
+  "Rumah Tinggal": "Hunian",
   Toko: "Perdagangan & Jasa",
   Warung: "Perdagangan & Jasa",
-  "Warung Makan": "Perdagangan & Jasa",
-  Cafe: "Perdagangan & Jasa",
-  Pasar: "Perdagangan & Jasa",
-  Bank: "Perdagangan & Jasa",
-  Bengkel: "Perdagangan & Jasa",
-  Penginapan: "Wisata & Penginapan",
-  Atraksi: "Wisata & Penginapan",
   Sekolah: "Pendidikan",
   Masjid: "Ibadah",
-  Musholla: "Ibadah",
-  Gereja: "Ibadah",
-  Puskesmas: "Kesehatan",
-  "Kantor Desa": "Pemerintahan",
-  "Kantor Kecamatan": "Pemerintahan",
-  "Gedung Kecamatan": "Pemerintahan",
-  "Kantor Polisi": "Pemerintahan",
-  KopDes: "Pemerintahan",
-  "Kantor BUMDes": "Pemerintahan",
+  Gudang : "Penyimpanan",
+  Kantor: "Perkantoran",
 };
 
 const warnaKategori = {
   Hunian: "#9ca3af",
   "Perdagangan & Jasa": "#f59e0b",
-  "Wisata & Penginapan": "#a855f7",
+  Penyimpanan: "#a855f7",
   Pendidikan: "#3b82f6",
   Ibadah: "#10b981",
   Kesehatan: "#ef4444",
-  Pemerintahan: "#1e3a8a",
+  Perkantoran: "#1e3a8a",
 };
 
 function getKategori(namaObj) {
@@ -171,6 +157,17 @@ function styleVegetasi(feature) {
 }
 
 /* 6.3 Lahan kosong */
+
+const katergoriLahanKosong = {
+  "Lahan Kosong": "Lahan Kosong",
+  Lapangan : "Lapangan"
+};
+
+const warnaLahanKosong = {
+  "Lahan Kosong": "#d6b98c",
+  Lapangan: "#faae15"
+};
+
 function styleLahanKosong(feature) {
   return {
     fillColor: "#d6b98c",
