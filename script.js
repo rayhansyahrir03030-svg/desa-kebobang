@@ -169,24 +169,24 @@ const warnaLahanKosong = {
 };
 
 // Mengambil kategori dari atribut GeoJSON
+
 function getKategoriLahanKosong(feature) {
   const p = feature.properties;
 
-  // Utamakan atribut Kelas_Obj
-  const kelas = p.Kelas_Obj;
+  // Utamakan Nama_Obj untuk membedakan lapangan
+  const nama = (p.Nama_Obj || "").trim().toLowerCase();
 
-  if (kelas && warnaLahanKosong[kelas]) {
-    return kelas;
+  if (nama.includes("lapangan")) {
+    return "Lapangan";
   }
 
-  // Alternatif jika kategori tersimpan di Nama_Obj
-  const nama = p.Nama_Obj;
+  // Jika bukan lapangan, periksa Kelas_Obj
+  const kelas = (p.Kelas_Obj || "").trim().toLowerCase();
 
-  if (nama && warnaLahanKosong[nama]) {
-    return nama;
+  if (kelas === "lahan kosong") {
+    return "Lahan Kosong";
   }
 
-  // Warna default jika kategori tidak dikenali
   return "Lahan Kosong";
 }
 
