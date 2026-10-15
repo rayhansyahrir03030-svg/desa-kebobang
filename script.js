@@ -155,31 +155,50 @@ function styleVegetasi(feature) {
   };
 }
 
-/* 6.3 Lahan kosong */
 
-const katergoriLahanKosong = {
+/* 6.3 Lahan Kosong dan Lapangan */
+
+const kategoriLahanKosong = {
   "Lahan Kosong": "Lahan Kosong",
-  Lapangan : "Lapangan"
+  "Lapangan": "Lapangan"
 };
 
 const warnaLahanKosong = {
   "Lahan Kosong": "#d6b98c",
-  Lapangan: "#faae15"
+  "Lapangan": "#faae15"
 };
 
-function getKategori(namaObj) {
-  return kategoriLahanKosong[namaObj] || "Lahan Kosong";
+// Mengambil kategori dari atribut GeoJSON
+function getKategoriLahanKosong(feature) {
+  const p = feature.properties;
+
+  // Utamakan atribut Kelas_Obj
+  const kelas = p.Kelas_Obj;
+
+  if (kelas && warnaLahanKosong[kelas]) {
+    return kelas;
+  }
+
+  // Alternatif jika kategori tersimpan di Nama_Obj
+  const nama = p.Nama_Obj;
+
+  if (nama && warnaLahanKosong[nama]) {
+    return nama;
+  }
+
+  // Warna default jika kategori tidak dikenali
+  return "Lahan Kosong";
 }
 
 function styleLahanKosong(feature) {
-  const kategori = getKategori(feature.properties.Nama_Obj);
+  const kategori = getKategoriLahanKosong(feature);
 
   return {
-    fillOpacity: 0.7,
     fillColor: warnaLahanKosong[kategori],
+    fillOpacity: 0.7,
     color: "#8b6b3d",
     weight: 1.5,
-    dashArray: "5, 4",
+    dashArray: "5, 4"
   };
 }
 
