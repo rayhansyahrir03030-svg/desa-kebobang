@@ -304,38 +304,49 @@ const layersControl = L.control
   )
   .addTo(map);
 
-  /* ============================================
+ 
+/* ============================================
    9. LEGENDA
    ============================================ */
+
 const legend = L.control({ position: "bottomright" });
 
 legend.onAdd = function () {
   const div = L.DomUtil.create("div", "legend");
 
   let html = "<b>Bangunan</b>";
+
   for (const kategori in warnaKategori) {
-    html += `<i style="background:${warnaKategori[kategori]}"></i>${kategori}<br>`;
+    html +=
+      `<i style="background:${warnaKategori[kategori]}"></i>` +
+      `${kategori}<br>`;
   }
 
-  // Lahan Kosong dan Lapangan
-  for (const kategori in warnaLahanKosong) {
-    html += `<i style="background:${warnaLahanKosong[kategori]}"></i>` + `${kategori}<br>`;
-  }
-  
   html +=
     "<b>Vegetasi (luas)</b>" +
     '<i style="background:#166534"></i>&gt; 2 ha<br>' +
     '<i style="background:#22c55e"></i>1 - 2 ha<br>' +
     '<i style="background:#bbf7d0"></i>&lt; 1 ha<br>';
 
+  html += "<b>Lainnya</b>";
+
+  // Lahan Kosong dan Lapangan
+  for (const kategori in warnaLahanKosong) {
+    html +=
+      `<i style="background:${warnaLahanKosong[kategori]}"></i>` +
+      `${kategori}<br>`;
+  }
+
+  // Jalan
   html +=
-    "<b>Lainnya</b>" +
-    '<i style="background:#d6b98c"></i>Lahan Kosong<br>' +
     '<i style="background:#dc2626"></i>Jalan<br>';
 
   html += "<b>Landcover</b>";
+
   [2, 7, 5, 11].forEach((k) => {
-    html += `<i style="background:${kelasLandcover[k].warna}"></i>${kelasLandcover[k].nama}<br>`;
+    html +=
+      `<i style="background:${kelasLandcover[k].warna}"></i>` +
+      `${kelasLandcover[k].nama}<br>`;
   });
 
   div.innerHTML = html;
@@ -343,6 +354,7 @@ legend.onAdd = function () {
 };
 
 legend.addTo(map);
+
 
 /* ============================================
    10. Measure & Search Plugin
