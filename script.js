@@ -167,10 +167,16 @@ const warnaLahanKosong = {
   Lapangan: "#faae15"
 };
 
+function getKategori(namaObj) {
+  return kategoriLahanKosong[namaObj] || "Lahan Kosong";
+}
+
 function styleLahanKosong(feature) {
+  const kategori = getKategori(feature.properties.Nama_Obj);
+
   return {
-    fillColor: "#d6b98c",
     fillOpacity: 0.7,
+    fillColor: warnaLahanKosong[kategori],
     color: "#8b6b3d",
     weight: 1.5,
     dashArray: "5, 4",
@@ -311,6 +317,11 @@ legend.onAdd = function () {
     html += `<i style="background:${warnaKategori[kategori]}"></i>${kategori}<br>`;
   }
 
+  // Lahan Kosong dan Lapangan
+  for (const kategori in warnaLahanKosong) {
+    html += `<i style="background:${warnaLahanKosong[kategori]}"></i>` + `${kategori}<br>`;
+  }
+  
   html +=
     "<b>Vegetasi (luas)</b>" +
     '<i style="background:#166534"></i>&gt; 2 ha<br>' +
